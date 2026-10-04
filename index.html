@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NabhSys Inc. — NAVYOM OS Aero X</title>
+
     <style>
         :root {
             --bg-dark: #1A1D21;
@@ -22,8 +23,12 @@
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            border-radius: 0px !important;
-            font-family: 'Inter', 'Segoe UI', -apple-system, sans-serif;
+            border-radius: 0 !important;
+            font-family: "Inter", "Segoe UI", -apple-system, sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
         }
 
         body {
@@ -40,6 +45,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            gap: 24px;
             position: sticky;
             top: 0;
             z-index: 100;
@@ -49,8 +55,9 @@
             display: flex;
             align-items: center;
             gap: 12px;
-            text-decoration: none;
             color: var(--text-main);
+            text-decoration: none;
+            flex-shrink: 0;
         }
 
         .brand-logo {
@@ -66,34 +73,42 @@
         }
 
         .brand-subtitle {
-            font-size: 11px;
             color: var(--text-muted);
+            font-size: 11px;
             text-transform: uppercase;
             letter-spacing: 0.5px;
+        }
+
+        nav {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+            gap: 12px 24px;
         }
 
         nav a {
             color: var(--text-muted);
             text-decoration: none;
-            margin-left: 24px;
             font-size: 13px;
             font-weight: 600;
             text-transform: uppercase;
             transition: color 0.2s;
         }
 
-        nav a:hover {
+        nav a:hover,
+        nav a:focus-visible {
             color: var(--accent);
         }
 
         .hero {
-            padding: 100px 40px;
             max-width: 1200px;
             margin: 0 auto;
+            padding: 100px 40px;
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 60px;
             align-items: center;
+            scroll-margin-top: 100px;
         }
 
         .hero-tag {
@@ -102,163 +117,203 @@
             border: 1px solid var(--border);
             color: var(--accent);
             padding: 6px 14px;
+            margin-bottom: 20px;
             font-size: 12px;
             font-weight: 700;
             letter-spacing: 1px;
             text-transform: uppercase;
-            margin-bottom: 20px;
         }
 
         .hero h1 {
+            margin-bottom: 20px;
             font-size: 52px;
             font-weight: 800;
             line-height: 1.1;
-            margin-bottom: 20px;
             letter-spacing: -1px;
         }
 
         .hero p {
-            font-size: 16px;
-            color: var(--text-muted);
-            margin-bottom: 30px;
             max-width: 500px;
+            margin-bottom: 30px;
+            color: var(--text-muted);
+            font-size: 16px;
         }
 
         .cta-group {
             display: flex;
+            flex-wrap: wrap;
             gap: 16px;
+        }
+
+        .btn-primary,
+        .btn-secondary {
+            display: inline-block;
+            padding: 14px 28px;
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            text-decoration: none;
+            text-transform: uppercase;
+            cursor: pointer;
         }
 
         .btn-primary {
             background-color: var(--accent);
             color: #000000;
-            padding: 14px 28px;
-            font-weight: 700;
-            font-size: 13px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            text-decoration: none;
-            border: none;
-            cursor: pointer;
-            transition: background 0.2s;
+            border: 1px solid var(--accent);
+            transition: background-color 0.2s;
         }
 
-        .btn-primary:hover {
+        .btn-primary:hover,
+        .btn-primary:focus-visible {
             background-color: var(--accent-hover);
+            border-color: var(--accent-hover);
         }
 
         .btn-secondary {
             background-color: transparent;
             color: var(--text-main);
-            padding: 14px 28px;
-            font-weight: 700;
-            font-size: 13px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            text-decoration: none;
             border: 1px solid var(--border);
-            cursor: pointer;
         }
 
-        .btn-secondary:hover {
+        .btn-secondary:hover,
+        .btn-secondary:focus-visible {
             border-color: var(--accent);
             color: var(--accent);
         }
 
         .terminal-card {
+            min-width: 0;
+            padding: 20px;
+            overflow-x: auto;
             background-color: #121417;
             border: 1px solid var(--border);
-            padding: 20px;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 12px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
             color: var(--text-muted);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+            font-family: "JetBrains Mono", monospace;
+            font-size: 12px;
         }
 
         .terminal-header {
             display: flex;
             justify-content: space-between;
-            border-bottom: 1px solid var(--border);
+            gap: 20px;
+            min-width: 420px;
             padding-bottom: 10px;
             margin-bottom: 15px;
+            border-bottom: 1px solid var(--border);
             font-size: 11px;
             text-transform: uppercase;
         }
 
         .terminal-body {
+            min-width: 420px;
             line-height: 1.8;
         }
 
-        .t-blue { color: var(--accent); }
-        .t-green { color: var(--tag-verified); }
-        .t-amber { color: var(--tag-prototype); }
-
-        .section-title {
-            text-align: center;
-            padding-top: 60px;
-            font-size: 12px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 2px;
+        .t-blue {
             color: var(--accent);
         }
 
-        .section-heading {
+        .t-green {
+            color: var(--tag-verified);
+        }
+
+        .t-amber {
+            color: var(--tag-prototype);
+        }
+
+        .section-title {
+            padding-top: 60px;
+            color: var(--accent);
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 2px;
             text-align: center;
+            text-transform: uppercase;
+        }
+
+        .section-heading {
+            margin-bottom: 50px;
             font-size: 32px;
             font-weight: 800;
-            margin-bottom: 50px;
+            text-align: center;
+        }
+
+        #matrix,
+        #roadmap {
+            scroll-margin-top: 100px;
         }
 
         .matrix-grid {
             max-width: 1200px;
-            margin: 0 auto 100px auto;
+            margin: 0 auto 100px;
             padding: 0 40px;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 24px;
         }
 
         .card {
+            position: relative;
+            padding: 30px;
             background-color: var(--surface);
             border: 1px solid var(--border);
-            padding: 30px;
-            position: relative;
         }
 
         .card-tag {
             position: absolute;
             top: 20px;
             right: 20px;
+            padding: 3px 8px;
             font-size: 10px;
             font-weight: 800;
-            padding: 3px 8px;
-            text-transform: uppercase;
             letter-spacing: 0.5px;
+            text-transform: uppercase;
         }
 
-        .tag-verified { background-color: rgba(16, 185, 129, 0.1); color: var(--tag-verified); border: 1px solid var(--tag-verified); }
-        .tag-prototype { background-color: rgba(245, 158, 11, 0.1); color: var(--tag-prototype); border: 1px solid var(--tag-prototype); }
-        .tag-vision { background-color: rgba(139, 92, 246, 0.1); color: var(--tag-vision); border: 1px solid var(--tag-vision); }
+        .tag-verified {
+            background-color: rgba(16, 185, 129, 0.1);
+            border: 1px solid var(--tag-verified);
+            color: var(--tag-verified);
+        }
+
+        .tag-prototype {
+            background-color: rgba(245, 158, 11, 0.1);
+            border: 1px solid var(--tag-prototype);
+            color: var(--tag-prototype);
+        }
+
+        .tag-vision {
+            background-color: rgba(139, 92, 246, 0.1);
+            border: 1px solid var(--tag-vision);
+            color: var(--tag-vision);
+        }
 
         .card h3 {
+            margin: 10px 0 12px;
+            padding-right: 90px;
             font-size: 18px;
             font-weight: 700;
-            margin-bottom: 12px;
-            margin-top: 10px;
         }
 
         .card p {
-            font-size: 13px;
             color: var(--text-muted);
+            font-size: 13px;
             line-height: 1.6;
         }
 
+        code {
+            color: var(--text-main);
+            font-family: "JetBrains Mono", monospace;
+            font-size: 0.95em;
+        }
+
         .roadmap {
+            padding: 80px 40px;
             background-color: var(--surface);
             border-top: 1px solid var(--border);
             border-bottom: 1px solid var(--border);
-            padding: 80px 40px;
         }
 
         .roadmap-container {
@@ -270,8 +325,8 @@
         }
 
         .roadmap-step {
-            border-left: 2px solid var(--border);
             padding-left: 20px;
+            border-left: 2px solid var(--border);
         }
 
         .roadmap-step.active {
@@ -279,21 +334,21 @@
         }
 
         .roadmap-year {
+            margin-bottom: 8px;
+            color: var(--accent);
             font-size: 24px;
             font-weight: 800;
-            color: var(--accent);
-            margin-bottom: 8px;
         }
 
         .roadmap-title {
+            margin-bottom: 8px;
             font-size: 14px;
             font-weight: 700;
-            margin-bottom: 8px;
         }
 
         .roadmap-desc {
-            font-size: 12px;
             color: var(--text-muted);
+            font-size: 12px;
         }
 
         footer {
@@ -303,1049 +358,332 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            font-size: 12px;
+            gap: 20px;
             color: var(--text-muted);
+            font-size: 12px;
             border-top: 1px solid var(--border);
         }
 
         .footer-brand {
-            font-weight: 700;
             color: var(--text-main);
+            font-weight: 700;
         }
 
         @media (max-width: 900px) {
-            .hero { grid-template-columns: 1fr; text-align: center; }
-            .hero p { margin: 0 auto 30px auto; }
-            .cta-group { justify-content: center; }
-            .roadmap-container { grid-template-columns: 1fr; }
+            header {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+
+            nav {
+                justify-content: flex-start;
+                width: 100%;
+            }
+
+            .hero {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .hero p {
+                margin-right: auto;
+                margin-left: auto;
+            }
+
+            .cta-group {
+                justify-content: center;
+            }
+
+            .roadmap-container {
+                grid-template-columns: 1fr;
+            }
+
+            footer {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+        }
+
+        @media (max-width: 600px) {
+            header {
+                padding: 16px 20px;
+            }
+
+            nav {
+                gap: 10px 16px;
+            }
+
+            nav a {
+                font-size: 11px;
+            }
+
+            .hero {
+                padding: 70px 20px;
+            }
+
+            .hero h1 {
+                font-size: 42px;
+            }
+
+            .hero p {
+                font-size: 15px;
+            }
+
+            .cta-group {
+                align-items: stretch;
+                flex-direction: column;
+            }
+
+            .btn-primary,
+            .btn-secondary {
+                text-align: center;
+            }
+
+            .matrix-grid {
+                padding: 0 20px;
+            }
+
+            .card {
+                padding: 24px;
+            }
+
+            .roadmap {
+                padding: 60px 20px;
+            }
+
+            footer {
+                padding: 40px 20px;
+            }
         }
     </style>
 </head>
-<body>
 
+<body>
     <header>
-        <a href="#" class="brand">
+        <a href="#" class="brand" aria-label="NabhSys Inc. home">
             <span class="brand-logo">⬡</span>
+
             <div>
                 <div class="brand-title">NABHSYS INC.</div>
                 <div class="brand-subtitle">NAVYOM OS AERO X</div>
             </div>
         </a>
-        <nav>
+
+        <nav aria-label="Main navigation">
             <a href="#architecture">Architecture</a>
             <a href="#matrix">Capabilities</a>
             <a href="#roadmap">Roadmap</a>
-            <a href="https://github.com/NabhSys-Inc" target="_blank">GitHub</a>
+            <a
+                href="https://github.com/NabhSys-Inc"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                GitHub
+            </a>
         </nav>
     </header>
 
-    <section class="hero">
-        <div>
-            <div class="hero-tag">Build 0.1 "Meghdoot" Active</div>
-            <h1>Own Your Sky.</h1>
-            <p>A sovereign Indian desktop computing platform. Engineered on a hardened Fedora KDE Plasma 6 foundation, driven by autonomous local AI control engines and native containerized application translation layers.</p>
-            <div class="cta-group">
-                <a href="#architecture" class="btn-primary">Explore Platform</a>
-                <a href="https://github.com/NabhSys-Inc" target="_blank" class="btn-secondary">Source Repositories</a>
-            </div>
-        </div>
-
-        <div class="terminal-card">
-            <div class="terminal-header">
-                <span>NAVYOM HOST CONTROL ENGINE v6</span>
-                <span class="t-green">ONLINE</span>
-            </div>
-            <div class="terminal-body">
-                <span class="t-blue">lino@navyom-master:~$</span> navyom-pe-analyze app.exe<br>
-                ARCH=win64<br>
-                SUBSYSTEM=GUI<br>
-                DOTNET=false<br><br>
-                <span class="t-blue">lino@navyom-master:~$</span> navyom-install app.exe "Target Application"<br>
-                <span class="t-amber">[1/4] Containerizing payload...</span><br>
-                <span class="t-amber">[2/4] Extracting embedded application icon...</span><br>
-                <span class="t-amber">[3/4] Isolated Wine prefix generated at /var/lib/navyom/</span><br>
-                <span class="t-green">✓ Registered: /usr/share/applications/navyom-app.desktop</span><br><br>
-                <span class="t-blue">NAR Autonomous Agent:</span> Task verified complete. What next?
-            </div>
-        </div>
-    </section>
-
-    <div id="matrix">
-        <div class="section-title">Core Subsystems</div>
-        <div class="section-heading">Engineered for Technical Sovereignty</div>
-
-        <div class="matrix-grid">
-            <div class="card">
-                <div class="card-tag tag-verified">[VERIFIED]</div>
-                <h3>NAR Autonomous AI Router</h3>
-                <p>Host control engine running local Ollama model routing over SSH for hands-free VM operation, real-time GUI automation, and self-healing error resolution.</p>
-            </div>
-
-            <div class="card">
-                <div class="card-tag tag-prototype">[PROTOTYPE]</div>
-                <h3>NCE Container Subsystem</h3>
-                <p>Native Compatibility Engine providing containerized Windows PE translation (`.exe`, `.msi`), prefix isolation under `/var/lib/navyom/`, and direct MIME file handler locking.</p>
-            </div>
-
-            <div class="card">
-                <div class="card-tag tag-prototype">[PROTOTYPE]</div>
-                <h3>Aero X Control Center</h3>
-                <p>Flat, geometric PyQt6 macOS-style system settings interface operating directly on live system interfaces (`xrandr`, `systemctl`, `df`, `zramctl`) with zero fake placeholders.</p>
-            </div>
-
-            <div class="card">
-                <div class="card-tag tag-vision">[VISION]</div>
-                <h3>USB Hardware Auth Vault</h3>
-                <p>Physical security keys integrating `pam_u2f` hardware triggers with Btrfs read-only encrypted subvolumes for instant hardware locking and hidden local application vaults.</p>
-            </div>
-
-            <div class="card">
-                <div class="card-tag tag-verified">[VERIFIED]</div>
-                <h3>Zero-Wineglass Integration</h3>
-                <p>Multi-stage binary resource extraction (`wrestool` → `7z` → `icotool`) extracting authentic developer icons directly into system theme caches, blocking default wineglass icon pollution.</p>
-            </div>
-
-            <div class="card">
-                <div class="card-tag tag-verified">[VERIFIED]</div>
-                <h3>Btrfs + ZRAM Storage Stack</h3>
-                <p>Automated copy-on-write snapshotting backed by active `/dev/zram0` RAM compression, protecting the core OS against upgrade breakages and instant rollback capabilities.</p>
-            </div>
-        </div>
-    </div>
-
-    <section class="roadmap" id="roadmap">
-        <div class="section-title">Platform Timeline</div>
-        <div class="section-heading" style="margin-bottom: 40px;">Viksit Bharat 2047 Alignment</div>
-
-        <div class="roadmap-container">
-            <div class="roadmap-step active">
-                <div class="roadmap-year">2026</div>
-                <div class="roadmap-title">Build 0.1 "Meghdoot"</div>
-                <div class="roadmap-desc">Hardened Fedora KDE Plasma 6 base, initial NCE CLI/Qt6 toolchain, autonomous NAR host control agent with multi-modal vision execution.</div>
-            </div>
-
-            <div class="roadmap-step">
-                <div class="roadmap-year">2029</div>
-                <div class="roadmap-title">Public Sovereign Target</div>
-                <div class="roadmap-desc">Full release of NAVYOM OS Aero X with immutable core system partitions, full universal app installer, and complete local AI desktop assistant integration.</div>
-            </div>
-
-            <div class="roadmap-step">
-                <div class="roadmap-year">2047</div>
-                <div class="roadmap-title">Viksit Bharat Computing</div>
-                <div class="roadmap-desc">Self-reliant national computing ecosystem spanning hardware security keys, local AI orchestration, and sovereign operating environment standards.</div>
-            </div>
-        </div>
-    </section>
-
-    <footer>
-        <div>
-            <span class="footer-brand">NabhSys Inc.</span> — Sovereign Computing Platform
-        </div>
-        <div>
-            NAVYOM OS Aero X · Designed by Lino (Bhubaneswar, Odisha)
-        </div>
-    </footer>
-
-</body>
-</html><!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NabhSys Inc. — NAVYOM OS Aero X</title>
-    <style>
-        :root {
-            --bg-dark: #1A1D21;
-            --surface: #22252A;
-            --border: #2A2E35;
-            --accent: #38B2FF;
-            --accent-hover: #60C3FF;
-            --text-main: #F0F2F5;
-            --text-muted: #8A8D91;
-            --tag-verified: #10B981;
-            --tag-prototype: #F59E0B;
-            --tag-vision: #8B5CF6;
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            border-radius: 0px !important;
-            font-family: 'Inter', 'Segoe UI', -apple-system, sans-serif;
-        }
-
-        body {
-            background-color: var(--bg-dark);
-            color: var(--text-main);
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-
-        header {
-            background-color: var(--surface);
-            border-bottom: 1px solid var(--border);
-            padding: 18px 40px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-
-        .brand {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            text-decoration: none;
-            color: var(--text-main);
-        }
-
-        .brand-logo {
-            color: var(--accent);
-            font-size: 22px;
-            font-weight: bold;
-        }
-
-        .brand-title {
-            font-size: 16px;
-            font-weight: 700;
-            letter-spacing: 1px;
-        }
-
-        .brand-subtitle {
-            font-size: 11px;
-            color: var(--text-muted);
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        nav a {
-            color: var(--text-muted);
-            text-decoration: none;
-            margin-left: 24px;
-            font-size: 13px;
-            font-weight: 600;
-            text-transform: uppercase;
-            transition: color 0.2s;
-        }
-
-        nav a:hover {
-            color: var(--accent);
-        }
-
-        .hero {
-            padding: 100px 40px;
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            align-items: center;
-        }
-
-        .hero-tag {
-            display: inline-block;
-            background-color: var(--surface);
-            border: 1px solid var(--border);
-            color: var(--accent);
-            padding: 6px 14px;
-            font-size: 12px;
-            font-weight: 700;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            margin-bottom: 20px;
-        }
-
-        .hero h1 {
-            font-size: 52px;
-            font-weight: 800;
-            line-height: 1.1;
-            margin-bottom: 20px;
-            letter-spacing: -1px;
-        }
-
-        .hero p {
-            font-size: 16px;
-            color: var(--text-muted);
-            margin-bottom: 30px;
-            max-width: 500px;
-        }
-
-        .cta-group {
-            display: flex;
-            gap: 16px;
-        }
-
-        .btn-primary {
-            background-color: var(--accent);
-            color: #000000;
-            padding: 14px 28px;
-            font-weight: 700;
-            font-size: 13px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            text-decoration: none;
-            border: none;
-            cursor: pointer;
-            transition: background 0.2s;
-        }
-
-        .btn-primary:hover {
-            background-color: var(--accent-hover);
-        }
-
-        .btn-secondary {
-            background-color: transparent;
-            color: var(--text-main);
-            padding: 14px 28px;
-            font-weight: 700;
-            font-size: 13px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            text-decoration: none;
-            border: 1px solid var(--border);
-            cursor: pointer;
-        }
-
-        .btn-secondary:hover {
-            border-color: var(--accent);
-            color: var(--accent);
-        }
-
-        .terminal-card {
-            background-color: #121417;
-            border: 1px solid var(--border);
-            padding: 20px;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 12px;
-            color: var(--text-muted);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
-        }
-
-        .terminal-header {
-            display: flex;
-            justify-content: space-between;
-            border-bottom: 1px solid var(--border);
-            padding-bottom: 10px;
-            margin-bottom: 15px;
-            font-size: 11px;
-            text-transform: uppercase;
-        }
-
-        .terminal-body {
-            line-height: 1.8;
-        }
-
-        .t-blue { color: var(--accent); }
-        .t-green { color: var(--tag-verified); }
-        .t-amber { color: var(--tag-prototype); }
-
-        .section-title {
-            text-align: center;
-            padding-top: 60px;
-            font-size: 12px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            color: var(--accent);
-        }
-
-        .section-heading {
-            text-align: center;
-            font-size: 32px;
-            font-weight: 800;
-            margin-bottom: 50px;
-        }
-
-        .matrix-grid {
-            max-width: 1200px;
-            margin: 0 auto 100px auto;
-            padding: 0 40px;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 24px;
-        }
-
-        .card {
-            background-color: var(--surface);
-            border: 1px solid var(--border);
-            padding: 30px;
-            position: relative;
-        }
-
-        .card-tag {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            font-size: 10px;
-            font-weight: 800;
-            padding: 3px 8px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .tag-verified { background-color: rgba(16, 185, 129, 0.1); color: var(--tag-verified); border: 1px solid var(--tag-verified); }
-        .tag-prototype { background-color: rgba(245, 158, 11, 0.1); color: var(--tag-prototype); border: 1px solid var(--tag-prototype); }
-        .tag-vision { background-color: rgba(139, 92, 246, 0.1); color: var(--tag-vision); border: 1px solid var(--tag-vision); }
-
-        .card h3 {
-            font-size: 18px;
-            font-weight: 700;
-            margin-bottom: 12px;
-            margin-top: 10px;
-        }
-
-        .card p {
-            font-size: 13px;
-            color: var(--text-muted);
-            line-height: 1.6;
-        }
-
-        .roadmap {
-            background-color: var(--surface);
-            border-top: 1px solid var(--border);
-            border-bottom: 1px solid var(--border);
-            padding: 80px 40px;
-        }
-
-        .roadmap-container {
-            max-width: 1000px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 30px;
-        }
-
-        .roadmap-step {
-            border-left: 2px solid var(--border);
-            padding-left: 20px;
-        }
-
-        .roadmap-step.active {
-            border-left-color: var(--accent);
-        }
-
-        .roadmap-year {
-            font-size: 24px;
-            font-weight: 800;
-            color: var(--accent);
-            margin-bottom: 8px;
-        }
-
-        .roadmap-title {
-            font-size: 14px;
-            font-weight: 700;
-            margin-bottom: 8px;
-        }
-
-        .roadmap-desc {
-            font-size: 12px;
-            color: var(--text-muted);
-        }
-
-        footer {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 60px 40px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 12px;
-            color: var(--text-muted);
-            border-top: 1px solid var(--border);
-        }
-
-        .footer-brand {
-            font-weight: 700;
-            color: var(--text-main);
-        }
-
-        @media (max-width: 900px) {
-            .hero { grid-template-columns: 1fr; text-align: center; }
-            .hero p { margin: 0 auto 30px auto; }
-            .cta-group { justify-content: center; }
-            .roadmap-container { grid-template-columns: 1fr; }
-        }
-    </style>
-</head>
-<body>
-
-    <header>
-        <a href="#" class="brand">
-            <span class="brand-logo">⬡</span>
+    <main>
+        <section class="hero" id="architecture">
             <div>
-                <div class="brand-title">NABHSYS INC.</div>
-                <div class="brand-subtitle">NAVYOM OS AERO X</div>
-            </div>
-        </a>
-        <nav>
-            <a href="#architecture">Architecture</a>
-            <a href="#matrix">Capabilities</a>
-            <a href="#roadmap">Roadmap</a>
-            <a href="https://github.com/NabhSys-Inc" target="_blank">GitHub</a>
-        </nav>
-    </header>
+                <div class="hero-tag">Build 0.1 "Meghdoot" Active</div>
 
-    <section class="hero">
-        <div>
-            <div class="hero-tag">Build 0.1 "Meghdoot" Active</div>
-            <h1>Own Your Sky.</h1>
-            <p>A sovereign Indian desktop computing platform. Engineered on a hardened Fedora KDE Plasma 6 foundation, driven by autonomous local AI control engines and native containerized application translation layers.</p>
-            <div class="cta-group">
-                <a href="#architecture" class="btn-primary">Explore Platform</a>
-                <a href="https://github.com/NabhSys-Inc" target="_blank" class="btn-secondary">Source Repositories</a>
-            </div>
-        </div>
+                <h1>Own Your Sky.</h1>
 
-        <div class="terminal-card">
-            <div class="terminal-header">
-                <span>NAVYOM HOST CONTROL ENGINE v6</span>
-                <span class="t-green">ONLINE</span>
-            </div>
-            <div class="terminal-body">
-                <span class="t-blue">lino@navyom-master:~$</span> navyom-pe-analyze app.exe<br>
-                ARCH=win64<br>
-                SUBSYSTEM=GUI<br>
-                DOTNET=false<br><br>
-                <span class="t-blue">lino@navyom-master:~$</span> navyom-install app.exe "Target Application"<br>
-                <span class="t-amber">[1/4] Containerizing payload...</span><br>
-                <span class="t-amber">[2/4] Extracting embedded application icon...</span><br>
-                <span class="t-amber">[3/4] Isolated Wine prefix generated at /var/lib/navyom/</span><br>
-                <span class="t-green">✓ Registered: /usr/share/applications/navyom-app.desktop</span><br><br>
-                <span class="t-blue">NAR Autonomous Agent:</span> Task verified complete. What next?
-            </div>
-        </div>
-    </section>
+                <p>
+                    A sovereign Indian desktop computing platform. Engineered on
+                    a hardened Fedora KDE Plasma 6 foundation, driven by
+                    autonomous local AI control engines and native containerized
+                    application translation layers.
+                </p>
 
-    <div id="matrix">
-        <div class="section-title">Core Subsystems</div>
-        <div class="section-heading">Engineered for Technical Sovereignty</div>
+                <div class="cta-group">
+                    <a href="#architecture" class="btn-primary">
+                        Explore Platform
+                    </a>
 
-        <div class="matrix-grid">
-            <div class="card">
-                <div class="card-tag tag-verified">[VERIFIED]</div>
-                <h3>NAR Autonomous AI Router</h3>
-                <p>Host control engine running local Ollama model routing over SSH for hands-free VM operation, real-time GUI automation, and self-healing error resolution.</p>
+                    <a
+                        href="https://github.com/NabhSys-Inc"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="btn-secondary"
+                    >
+                        Source Repositories
+                    </a>
+                </div>
             </div>
 
-            <div class="card">
-                <div class="card-tag tag-prototype">[PROTOTYPE]</div>
-                <h3>NCE Container Subsystem</h3>
-                <p>Native Compatibility Engine providing containerized Windows PE translation (`.exe`, `.msi`), prefix isolation under `/var/lib/navyom/`, and direct MIME file handler locking.</p>
-            </div>
+            <div class="terminal-card" aria-label="Navyom host control engine output">
+                <div class="terminal-header">
+                    <span>NAVYOM HOST CONTROL ENGINE V6</span>
+                    <span class="t-green">ONLINE</span>
+                </div>
 
-            <div class="card">
-                <div class="card-tag tag-prototype">[PROTOTYPE]</div>
-                <h3>Aero X Control Center</h3>
-                <p>Flat, geometric PyQt6 macOS-style system settings interface operating directly on live system interfaces (`xrandr`, `systemctl`, `df`, `zramctl`) with zero fake placeholders.</p>
-            </div>
+                <div class="terminal-body">
+                    <span class="t-blue">lino@navyom-master:~$</span>
+                    navyom-pe-analyze app.exe<br>
 
-            <div class="card">
-                <div class="card-tag tag-vision">[VISION]</div>
-                <h3>USB Hardware Auth Vault</h3>
-                <p>Physical security keys integrating `pam_u2f` hardware triggers with Btrfs read-only encrypted subvolumes for instant hardware locking and hidden local application vaults.</p>
-            </div>
+                    ARCH=win64<br>
+                    SUBSYSTEM=GUI<br>
+                    DOTNET=false<br><br>
 
-            <div class="card">
-                <div class="card-tag tag-verified">[VERIFIED]</div>
-                <h3>Zero-Wineglass Integration</h3>
-                <p>Multi-stage binary resource extraction (`wrestool` → `7z` → `icotool`) extracting authentic developer icons directly into system theme caches, blocking default wineglass icon pollution.</p>
-            </div>
+                    <span class="t-blue">lino@navyom-master:~$</span>
+                    navyom-install app.exe "Target Application"<br>
 
-            <div class="card">
-                <div class="card-tag tag-verified">[VERIFIED]</div>
-                <h3>Btrfs + ZRAM Storage Stack</h3>
-                <p>Automated copy-on-write snapshotting backed by active `/dev/zram0` RAM compression, protecting the core OS against upgrade breakages and instant rollback capabilities.</p>
-            </div>
-        </div>
-    </div>
+                    <span class="t-amber">[1/4] Containerizing payload...</span><br>
+                    <span class="t-amber">
+                        [2/4] Extracting embedded application icon...
+                    </span><br>
+                    <span class="t-amber">
+                        [3/4] Isolated Wine prefix generated at
+                        /var/lib/navyom/
+                    </span><br>
 
-    <section class="roadmap" id="roadmap">
-        <div class="section-title">Platform Timeline</div>
-        <div class="section-heading" style="margin-bottom: 40px;">Viksit Bharat 2047 Alignment</div>
+                    <span class="t-green">
+                        ✓ Registered:
+                        /usr/share/applications/navyom-app.desktop
+                    </span><br><br>
 
-        <div class="roadmap-container">
-            <div class="roadmap-step active">
-                <div class="roadmap-year">2026</div>
-                <div class="roadmap-title">Build 0.1 "Meghdoot"</div>
-                <div class="roadmap-desc">Hardened Fedora KDE Plasma 6 base, initial NCE CLI/Qt6 toolchain, autonomous NAR host control agent with multi-modal vision execution.</div>
+                    <span class="t-blue">NAR Autonomous Agent:</span>
+                    Task verified complete. What next?
+                </div>
             </div>
+        </section>
 
-            <div class="roadmap-step">
-                <div class="roadmap-year">2029</div>
-                <div class="roadmap-title">Public Sovereign Target</div>
-                <div class="roadmap-desc">Full release of NAVYOM OS Aero X with immutable core system partitions, full universal app installer, and complete local AI desktop assistant integration.</div>
-            </div>
+        <section id="matrix">
+            <div class="section-title">Core Subsystems</div>
+            <h2 class="section-heading">
+                Engineered for Technical Sovereignty
+            </h2>
 
-            <div class="roadmap-step">
-                <div class="roadmap-year">2047</div>
-                <div class="roadmap-title">Viksit Bharat Computing</div>
-                <div class="roadmap-desc">Self-reliant national computing ecosystem spanning hardware security keys, local AI orchestration, and sovereign operating environment standards.</div>
+            <div class="matrix-grid">
+                <article class="card">
+                    <div class="card-tag tag-verified">[VERIFIED]</div>
+                    <h3>NAR Autonomous AI Router</h3>
+                    <p>
+                        Host control engine running local Ollama model routing
+                        over SSH for hands-free VM operation, real-time GUI
+                        automation, and self-healing error resolution.
+                    </p>
+                </article>
+
+                <article class="card">
+                    <div class="card-tag tag-prototype">[PROTOTYPE]</div>
+                    <h3>NCE Container Subsystem</h3>
+                    <p>
+                        Native Compatibility Engine providing containerized
+                        Windows PE translation
+                        (<code>.exe</code>, <code>.msi</code>), prefix isolation
+                        under <code>/var/lib/navyom/</code>, and direct MIME
+                        file handler locking.
+                    </p>
+                </article>
+
+                <article class="card">
+                    <div class="card-tag tag-prototype">[PROTOTYPE]</div>
+                    <h3>Aero X Control Center</h3>
+                    <p>
+                        Flat, geometric PyQt6 macOS-style system settings
+                        interface operating directly on live system interfaces
+                        (<code>xrandr</code>, <code>systemctl</code>,
+                        <code>df</code>, <code>zramctl</code>) with zero fake
+                        placeholders.
+                    </p>
+                </article>
+
+                <article class="card">
+                    <div class="card-tag tag-vision">[VISION]</div>
+                    <h3>USB Hardware Auth Vault</h3>
+                    <p>
+                        Physical security keys integrating
+                        <code>pam_u2f</code> hardware triggers with Btrfs
+                        read-only encrypted subvolumes for instant hardware
+                        locking and hidden local application vaults.
+                    </p>
+                </article>
+
+                <article class="card">
+                    <div class="card-tag tag-verified">[VERIFIED]</div>
+                    <h3>Zero-Wineglass Integration</h3>
+                    <p>
+                        Multi-stage binary resource extraction
+                        (<code>wrestool</code> → <code>7z</code> →
+                        <code>icotool</code>) extracting authentic developer
+                        icons directly into system theme caches, blocking
+                        default wineglass icon pollution.
+                    </p>
+                </article>
+
+                <article class="card">
+                    <div class="card-tag tag-verified">[VERIFIED]</div>
+                    <h3>Btrfs + ZRAM Storage Stack</h3>
+                    <p>
+                        Automated copy-on-write snapshotting backed by active
+                        <code>/dev/zram0</code> RAM compression, protecting the
+                        core OS against upgrade breakages and enabling instant
+                        rollback capabilities.
+                    </p>
+                </article>
             </div>
-        </div>
-    </section>
+        </section>
+
+        <section class="roadmap" id="roadmap">
+            <div class="section-title">Platform Timeline</div>
+
+            <h2 class="section-heading">
+                Viksit Bharat 2047 Alignment
+            </h2>
+
+            <div class="roadmap-container">
+                <article class="roadmap-step active">
+                    <div class="roadmap-year">2026</div>
+                    <div class="roadmap-title">
+                        Build 0.1 "Meghdoot"
+                    </div>
+                    <div class="roadmap-desc">
+                        Hardened Fedora KDE Plasma 6 base, initial NCE CLI/Qt6
+                        toolchain, autonomous NAR host control agent with
+                        multi-modal vision execution.
+                    </div>
+                </article>
+
+                <article class="roadmap-step">
+                    <div class="roadmap-year">2029</div>
+                    <div class="roadmap-title">
+                        Public Sovereign Target
+                    </div>
+                    <div class="roadmap-desc">
+                        Full release of NAVYOM OS Aero X with immutable core
+                        system partitions, full universal app installer, and
+                        complete local AI desktop assistant integration.
+                    </div>
+                </article>
+
+                <article class="roadmap-step">
+                    <div class="roadmap-year">2047</div>
+                    <div class="roadmap-title">
+                        Viksit Bharat Computing
+                    </div>
+                    <div class="roadmap-desc">
+                        Self-reliant national computing ecosystem spanning
+                        hardware security keys, local AI orchestration, and
+                        sovereign operating environment standards.
+                    </div>
+                </article>
+            </div>
+        </section>
+    </main>
 
     <footer>
         <div>
-            <span class="footer-brand">NabhSys Inc.</span> — Sovereign Computing Platform
+            <span class="footer-brand">NabhSys Inc.</span>
+            — Sovereign Computing Platform
         </div>
+
         <div>
-            NAVYOM OS Aero X · Designed by Lino (Bhubaneswar, Odisha)
+            NAVYOM OS Aero X · Designed by Lino
+            (Bhubaneswar, Odisha)
         </div>
     </footer>
-
-</body>
-</html><!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NabhSys Inc. — NAVYOM OS Aero X</title>
-    <style>
-        :root {
-            --bg-dark: #1A1D21;
-            --surface: #22252A;
-            --border: #2A2E35;
-            --accent: #38B2FF;
-            --accent-hover: #60C3FF;
-            --text-main: #F0F2F5;
-            --text-muted: #8A8D91;
-            --tag-verified: #10B981;
-            --tag-prototype: #F59E0B;
-            --tag-vision: #8B5CF6;
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            border-radius: 0px !important;
-            font-family: 'Inter', 'Segoe UI', -apple-system, sans-serif;
-        }
-
-        body {
-            background-color: var(--bg-dark);
-            color: var(--text-main);
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-
-        header {
-            background-color: var(--surface);
-            border-bottom: 1px solid var(--border);
-            padding: 18px 40px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-
-        .brand {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            text-decoration: none;
-            color: var(--text-main);
-        }
-
-        .brand-logo {
-            color: var(--accent);
-            font-size: 22px;
-            font-weight: bold;
-        }
-
-        .brand-title {
-            font-size: 16px;
-            font-weight: 700;
-            letter-spacing: 1px;
-        }
-
-        .brand-subtitle {
-            font-size: 11px;
-            color: var(--text-muted);
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        nav a {
-            color: var(--text-muted);
-            text-decoration: none;
-            margin-left: 24px;
-            font-size: 13px;
-            font-weight: 600;
-            text-transform: uppercase;
-            transition: color 0.2s;
-        }
-
-        nav a:hover {
-            color: var(--accent);
-        }
-
-        .hero {
-            padding: 100px 40px;
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            align-items: center;
-        }
-
-        .hero-tag {
-            display: inline-block;
-            background-color: var(--surface);
-            border: 1px solid var(--border);
-            color: var(--accent);
-            padding: 6px 14px;
-            font-size: 12px;
-            font-weight: 700;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            margin-bottom: 20px;
-        }
-
-        .hero h1 {
-            font-size: 52px;
-            font-weight: 800;
-            line-height: 1.1;
-            margin-bottom: 20px;
-            letter-spacing: -1px;
-        }
-
-        .hero p {
-            font-size: 16px;
-            color: var(--text-muted);
-            margin-bottom: 30px;
-            max-width: 500px;
-        }
-
-        .cta-group {
-            display: flex;
-            gap: 16px;
-        }
-
-        .btn-primary {
-            background-color: var(--accent);
-            color: #000000;
-            padding: 14px 28px;
-            font-weight: 700;
-            font-size: 13px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            text-decoration: none;
-            border: none;
-            cursor: pointer;
-            transition: background 0.2s;
-        }
-
-        .btn-primary:hover {
-            background-color: var(--accent-hover);
-        }
-
-        .btn-secondary {
-            background-color: transparent;
-            color: var(--text-main);
-            padding: 14px 28px;
-            font-weight: 700;
-            font-size: 13px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            text-decoration: none;
-            border: 1px solid var(--border);
-            cursor: pointer;
-        }
-
-        .btn-secondary:hover {
-            border-color: var(--accent);
-            color: var(--accent);
-        }
-
-        .terminal-card {
-            background-color: #121417;
-            border: 1px solid var(--border);
-            padding: 20px;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 12px;
-            color: var(--text-muted);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
-        }
-
-        .terminal-header {
-            display: flex;
-            justify-content: space-between;
-            border-bottom: 1px solid var(--border);
-            padding-bottom: 10px;
-            margin-bottom: 15px;
-            font-size: 11px;
-            text-transform: uppercase;
-        }
-
-        .terminal-body {
-            line-height: 1.8;
-        }
-
-        .t-blue { color: var(--accent); }
-        .t-green { color: var(--tag-verified); }
-        .t-amber { color: var(--tag-prototype); }
-
-        .section-title {
-            text-align: center;
-            padding-top: 60px;
-            font-size: 12px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            color: var(--accent);
-        }
-
-        .section-heading {
-            text-align: center;
-            font-size: 32px;
-            font-weight: 800;
-            margin-bottom: 50px;
-        }
-
-        .matrix-grid {
-            max-width: 1200px;
-            margin: 0 auto 100px auto;
-            padding: 0 40px;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 24px;
-        }
-
-        .card {
-            background-color: var(--surface);
-            border: 1px solid var(--border);
-            padding: 30px;
-            position: relative;
-        }
-
-        .card-tag {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            font-size: 10px;
-            font-weight: 800;
-            padding: 3px 8px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .tag-verified { background-color: rgba(16, 185, 129, 0.1); color: var(--tag-verified); border: 1px solid var(--tag-verified); }
-        .tag-prototype { background-color: rgba(245, 158, 11, 0.1); color: var(--tag-prototype); border: 1px solid var(--tag-prototype); }
-        .tag-vision { background-color: rgba(139, 92, 246, 0.1); color: var(--tag-vision); border: 1px solid var(--tag-vision); }
-
-        .card h3 {
-            font-size: 18px;
-            font-weight: 700;
-            margin-bottom: 12px;
-            margin-top: 10px;
-        }
-
-        .card p {
-            font-size: 13px;
-            color: var(--text-muted);
-            line-height: 1.6;
-        }
-
-        .roadmap {
-            background-color: var(--surface);
-            border-top: 1px solid var(--border);
-            border-bottom: 1px solid var(--border);
-            padding: 80px 40px;
-        }
-
-        .roadmap-container {
-            max-width: 1000px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 30px;
-        }
-
-        .roadmap-step {
-            border-left: 2px solid var(--border);
-            padding-left: 20px;
-        }
-
-        .roadmap-step.active {
-            border-left-color: var(--accent);
-        }
-
-        .roadmap-year {
-            font-size: 24px;
-            font-weight: 800;
-            color: var(--accent);
-            margin-bottom: 8px;
-        }
-
-        .roadmap-title {
-            font-size: 14px;
-            font-weight: 700;
-            margin-bottom: 8px;
-        }
-
-        .roadmap-desc {
-            font-size: 12px;
-            color: var(--text-muted);
-        }
-
-        footer {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 60px 40px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 12px;
-            color: var(--text-muted);
-            border-top: 1px solid var(--border);
-        }
-
-        .footer-brand {
-            font-weight: 700;
-            color: var(--text-main);
-        }
-
-        @media (max-width: 900px) {
-            .hero { grid-template-columns: 1fr; text-align: center; }
-            .hero p { margin: 0 auto 30px auto; }
-            .cta-group { justify-content: center; }
-            .roadmap-container { grid-template-columns: 1fr; }
-        }
-    </style>
-</head>
-<body>
-
-    <header>
-        <a href="#" class="brand">
-            <span class="brand-logo">⬡</span>
-            <div>
-                <div class="brand-title">NABHSYS INC.</div>
-                <div class="brand-subtitle">NAVYOM OS AERO X</div>
-            </div>
-        </a>
-        <nav>
-            <a href="#architecture">Architecture</a>
-            <a href="#matrix">Capabilities</a>
-            <a href="#roadmap">Roadmap</a>
-            <a href="https://github.com/NabhSys-Inc" target="_blank">GitHub</a>
-        </nav>
-    </header>
-
-    <section class="hero">
-        <div>
-            <div class="hero-tag">Build 0.1 "Meghdoot" Active</div>
-            <h1>Own Your Sky.</h1>
-            <p>A sovereign Indian desktop computing platform. Engineered on a hardened Fedora KDE Plasma 6 foundation, driven by autonomous local AI control engines and native containerized application translation layers.</p>
-            <div class="cta-group">
-                <a href="#architecture" class="btn-primary">Explore Platform</a>
-                <a href="https://github.com/NabhSys-Inc" target="_blank" class="btn-secondary">Source Repositories</a>
-            </div>
-        </div>
-
-        <div class="terminal-card">
-            <div class="terminal-header">
-                <span>NAVYOM HOST CONTROL ENGINE v6</span>
-                <span class="t-green">ONLINE</span>
-            </div>
-            <div class="terminal-body">
-                <span class="t-blue">lino@navyom-master:~$</span> navyom-pe-analyze app.exe<br>
-                ARCH=win64<br>
-                SUBSYSTEM=GUI<br>
-                DOTNET=false<br><br>
-                <span class="t-blue">lino@navyom-master:~$</span> navyom-install app.exe "Target Application"<br>
-                <span class="t-amber">[1/4] Containerizing payload...</span><br>
-                <span class="t-amber">[2/4] Extracting embedded application icon...</span><br>
-                <span class="t-amber">[3/4] Isolated Wine prefix generated at /var/lib/navyom/</span><br>
-                <span class="t-green">✓ Registered: /usr/share/applications/navyom-app.desktop</span><br><br>
-                <span class="t-blue">NAR Autonomous Agent:</span> Task verified complete. What next?
-            </div>
-        </div>
-    </section>
-
-    <div id="matrix">
-        <div class="section-title">Core Subsystems</div>
-        <div class="section-heading">Engineered for Technical Sovereignty</div>
-
-        <div class="matrix-grid">
-            <div class="card">
-                <div class="card-tag tag-verified">[VERIFIED]</div>
-                <h3>NAR Autonomous AI Router</h3>
-                <p>Host control engine running local Ollama model routing over SSH for hands-free VM operation, real-time GUI automation, and self-healing error resolution.</p>
-            </div>
-
-            <div class="card">
-                <div class="card-tag tag-prototype">[PROTOTYPE]</div>
-                <h3>NCE Container Subsystem</h3>
-                <p>Native Compatibility Engine providing containerized Windows PE translation (`.exe`, `.msi`), prefix isolation under `/var/lib/navyom/`, and direct MIME file handler locking.</p>
-            </div>
-
-            <div class="card">
-                <div class="card-tag tag-prototype">[PROTOTYPE]</div>
-                <h3>Aero X Control Center</h3>
-                <p>Flat, geometric PyQt6 macOS-style system settings interface operating directly on live system interfaces (`xrandr`, `systemctl`, `df`, `zramctl`) with zero fake placeholders.</p>
-            </div>
-
-            <div class="card">
-                <div class="card-tag tag-vision">[VISION]</div>
-                <h3>USB Hardware Auth Vault</h3>
-                <p>Physical security keys integrating `pam_u2f` hardware triggers with Btrfs read-only encrypted subvolumes for instant hardware locking and hidden local application vaults.</p>
-            </div>
-
-            <div class="card">
-                <div class="card-tag tag-verified">[VERIFIED]</div>
-                <h3>Zero-Wineglass Integration</h3>
-                <p>Multi-stage binary resource extraction (`wrestool` → `7z` → `icotool`) extracting authentic developer icons directly into system theme caches, blocking default wineglass icon pollution.</p>
-            </div>
-
-            <div class="card">
-                <div class="card-tag tag-verified">[VERIFIED]</div>
-                <h3>Btrfs + ZRAM Storage Stack</h3>
-                <p>Automated copy-on-write snapshotting backed by active `/dev/zram0` RAM compression, protecting the core OS against upgrade breakages and instant rollback capabilities.</p>
-            </div>
-        </div>
-    </div>
-
-    <section class="roadmap" id="roadmap">
-        <div class="section-title">Platform Timeline</div>
-        <div class="section-heading" style="margin-bottom: 40px;">Viksit Bharat 2047 Alignment</div>
-
-        <div class="roadmap-container">
-            <div class="roadmap-step active">
-                <div class="roadmap-year">2026</div>
-                <div class="roadmap-title">Build 0.1 "Meghdoot"</div>
-                <div class="roadmap-desc">Hardened Fedora KDE Plasma 6 base, initial NCE CLI/Qt6 toolchain, autonomous NAR host control agent with multi-modal vision execution.</div>
-            </div>
-
-            <div class="roadmap-step">
-                <div class="roadmap-year">2029</div>
-                <div class="roadmap-title">Public Sovereign Target</div>
-                <div class="roadmap-desc">Full release of NAVYOM OS Aero X with immutable core system partitions, full universal app installer, and complete local AI desktop assistant integration.</div>
-            </div>
-
-            <div class="roadmap-step">
-                <div class="roadmap-year">2047</div>
-                <div class="roadmap-title">Viksit Bharat Computing</div>
-                <div class="roadmap-desc">Self-reliant national computing ecosystem spanning hardware security keys, local AI orchestration, and sovereign operating environment standards.</div>
-            </div>
-        </div>
-    </section>
-
-    <footer>
-        <div>
-            <span class="footer-brand">NabhSys Inc.</span> — Sovereign Computing Platform
-        </div>
-        <div>
-            NAVYOM OS Aero X · Designed by Lino (Bhubaneswar, Odisha)
-        </div>
-    </footer>
-
 </body>
 </html>
